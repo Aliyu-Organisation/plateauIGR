@@ -72,17 +72,24 @@
     </div>
 
     <div class="md:w-9/12 w-full bg-[url('./assets/img/slideimg.png')] bg-center overflow-y-scroll">
+      <!--for easy understanding of what code section you are on ive added header comment to state the section, for easy 
+      understanding-->
 
+      <!--intro--> <!--personal details-->
       <section class="formTabs h-full">
 
         <div class="flex justify-center items-center h-full">
 
           <form action="" class="md:w-[60%] w-[80%] firstDiv">
-            <h1 class="fontBold text-2xl">Generate Invoice</h1>
-            <h1 class="mb-3 mt-3">Basic Information</h1>
+            <div id="text-color">
+              <!--pt-[86px] added to 'Generate Invoice' to align he text, matching the figma -->
+              <!--text-[#101828] & font-dm-sans added to both 'Generate Invoice' 'Personal Details' -->
+              <h1 class="fontBold text-2xl pt-[86px] text-[#101828] font-dm-sans">Generate Invoice</h1>
+              <h1 class="mb-3 mt-3 fontBold text-[#101828] font-dm-sans">Personal Details</h1>
+            </div>
 
-            <div class="form-group mb-4">
-              <label for="">Select your category*</label>
+            <div class="form-group mb-4" id="section1">
+              <label for="dropdown1">Select your category*</label>
               <select class="form-select genInv selCateg" required name="" id="category">
                 <option disabled selected>Select--</option>
                 <option value="2">Individual</option>
@@ -92,11 +99,245 @@
               </select>
             </div>
 
+
+
+            <div class="form-group mb-3">
+              <label for="thedescripInput">Enter Tin or Email*</label>
+              <input type="text" placeholder="Text Area" class="form-control genInv" id="thedescripInput" required>
+            </div>
+
+            <!-- <div class="form-group flex gap-4">
+              <button type="button" id="last-button" onclick="continuePage()">Fill Manually</button>
+              <button id="lastly-button" onclick="openPopup()" class="btn-only" type="submit">Fetch Details</button>
+              </div> -->
+
+            <div class="form-group flex gap-4">
+              <button type="button" id="manual-button" onclick="nextPrev(1)">Fill Manually</button>
+              <button id="fetch-button" onclick="showAlerta()" class="btn-only " type="submit">Fetch Details</button>
+            </div>
+
+            <!--style for buttons-->
+            <style>
+              #manual-button {
+                text-align: center;
+                background: white;
+                width: 380px;
+                color: #101828;
+                border: 3px solid var(--primaryCol);
+                border-radius: 100px;
+                padding: 10px 20px;
+              }
+
+              #fetch-button {
+                text-align: center;
+                background: #CDA545;
+                width: 380px;
+                border: 3px solid var(--primaryCol);
+                color: #101828 !important;
+                border-radius: 100px;
+                padding: 10px 20px;
+              }
+            </style>
+
+
+
+
+            <!--alert-->
+            <!--setted the alert to be displayed at the center using 'flex justify-center'-->
+            <!--give the alert of 100%(for responsivity of the alert size)-->
+            <!--added padding of 10px (p-[10px])-->
+            <!--give it a height of 10vh-->
+            <div class="regan w-full flex justify-center p-[10px] h-[10vh]">
+              <div class="alerta" id="alerta">
+                <!--img has width and height of 82px  and aligned to the center using margin-left: 136px
+                and margin-top: 15px for better loook-->
+                <img src="./no_accounts_.png" width="82px" height="82px" style="margin-left: 126px; margin-top: 15px;
+                  background: #fae3da; border-radius: 100%; padding: 10px;" alt="notfound">
+                <!--gave <h2> color of #101828   font-family:dm-sans and text size of 24px (2xl) text-center-->
+                <h2 class="text-[#101828] font-dm-sans text-2xl fontBold text-center">Not Found!</h2>
+                <p class="fontBold text-[#101828] font-dm-sans text-xm mb-2"> User detail not found in the database!
+                  Please go back and fill your details manually
+                </p>
+                <button id="filla" class="button w-full" style=" background-color: #CDA545; justify-content: 
+                  center; align-items: center; border-radius: 100px; padding: 10px 20px; text-align: center;
+                  width: 100%;" type="button" onclick="nextPrev(1)">Fill Manually</button>
+              </div>
+            </div>
+
+            <!--style for alert-->
+            <style>
+              .alerta {
+                visibility: hidden;
+                width: 400px;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: 0.5s;
+                text-align: center;
+                background-color: #fff;
+                border-radius: 6%;
+                position: absolute;
+                top: 0;
+                padding: 0 30px 30px;
+                color: #101828;
+                transition: transform 0.4s, top 0.4s;
+                box-shadow: 0 5px 30px rgba(0, 0, 0, .30);
+              }
+
+              .open-alertshow {
+                visibility: visible;
+                top: 50%;
+                transform: translate(-50%, -50%);
+
+
+              }
+            </style>
+
+            <!--script for alert-->
+            <script>
+              let alert = document.getElementById("alerta");
+              function showAlerta() {
+                alert.classList.add("open-alertshow");
+                document.getElementById("fetch-button").disabled = true;
+
+              }
+
+              function disabled() {
+                document.getElementById("fetch-button").disabled = false
+              }
+
+            </script>
+          </form>
+        </div>
+      </section>
+
+
+      <!--personal-->
+      <section class="formTabs h-full">
+        <div class="pt-10 md:px-10 px-4">
+          <button class="flex items-center gap-2" onclick="nextPrev(-1)">
+            <iconify-icon icon="eva:arrow-back-outline" class="text-[#101828]"></iconify-icon>
+            <span class="text-[#101828]">Go back</span>
+          </button>
+        </div>
+        <div class="flex justify-center items-center h-full -mt-10">
+
+          <form action="" class="md:w-[70%] secondForm">
+            <div id="text-color">
+              <!--pt-[366px] added to 'Generate Invoice' to align he text, matching the figma -->
+              <!--text-[#101828] & font-dm-sans added to both 'Generate Invoice' 'Personal Details' -->
+              <h1 class="fontBold text-2xl pt-[226px] text-[#101828] font-dm-sans">Generate Invoice</h1>
+              <h1 class="mb-3 mt-3 fontBold text-[#101828] font-dm-sans">Personal Details</h1>
+            </div>
+
+            <div class="form-group mb-4" id="section2">
+              <label for="dropdown2">Select your category*</label>
+              <select class="form-select genInv selCateg" required name="" id="dropdown2">
+                <!-- Options will be populated based on selection in Section 1 -->
+              </select>
+            </div>
+
+            <div class="form-group mb-3" id="sec2">
+              <label for="thedescripInput2">Enter Tin or Email*</label>
+              <input type="text" placeholder="estingtest@example.com" class="form-control genInv" id="thedescripInput2"
+                required>
+            </div>
+
+
+            <div class="flex items-center mb-4 gap-2" id="thaName">
+              <div class="form-group w-full">
+                <label for="userInputf">First name *</label>
+                <input type="text" class="form-control payInputs" required data-name="first_name"
+                  placeholder="Enter your first name" id="userInputf">
+              </div>
+
+              <div class="form-group w-full">
+                <label for="surnameD">Surname *</label>
+                <input type="text" class="form-control payInputs" required data-name="surname"
+                  placeholder="Enter your surname"  id="surnameD">
+              </div>
+            </div>
+
+            <div class="flex items-center mb-4 gap-2" id="theEmail">
+              <!-- <div class="form-group w-full">
+                <label for="">Email *</label>
+                <input type="text" class="form-control payInputs" required data-name="email"
+                  placeholder="Enter your Email Address">
+              </div> -->
+
+              <div class="form-group w-full">
+                <label for="phoneN">Phone number *</label>
+                <input type="number" class="form-control payInputs" minlength="11" maxlength="11" required
+                  data-name="phone" placeholder="Your 11-digits phone number" id="phoneN">
+              </div>
+
+              <div class="form-group w-full">
+                <label for="selectState">State*</label>
+                <select name="" id="selectState" class="form-select payInputs" data-name="state">
+                  <option value="Akwa Ibom">Akwa Ibom</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- <div class="flex items-center mb-4 gap-2">
+              <div class="form-group w-full" id="theTin">
+                <label for="">JTB TIN (Optional)</label>
+                <input type="text" class="form-control payInputs" id="tin" data-name="tin" placeholder="Enter your TIN">
+              </div> 
+
+              
+            </div>-->
+
+            <div class="flex items-center mb-4 gap-2">
+              <div class="form-group w-full">
+                <label for="selectLGA">LGA*</label>
+                <select name="" id="selectLGA" class="form-select payInputs" required data-name="lga">
+                </select>
+              </div>
+
+              <div class="form-group w-full" id="theLga">
+                <label for="addressu">Address*</label>
+                <input type="text" class="form-control payInputs" minlength="10" required data-name="address"
+                  placeholder=" Enter your address" id="addressu">
+              </div>
+            </div>
+
+
+
+
+            <button class="button w-full" type="button" onclick="nextPrev(1)" id="nxtt">Continue</button>
+          </form>
+
+        </div>
+      </section>
+
+
+      <!--Billing Information Section-->
+      <section class="formTabs h-full">
+
+        <div class="flex justify-center items-center h-full">
+
+          <form action="" class="md:w-[60%] w-[80%] firstDiv">
+            <!--pt-[196px] added to 'Generate Invoice' to align he text, matching the figma -->
+            <!--text-[#101828] & font-dm-sans added to both 'Generate Invoice' 'Personal Details' -->
+            <h1 class="fontBold text-2xl pt-[86px] text-[#101828] font-dm-sans">Generate Invoice</h1>
+            <h1 class="mb-3 mt-3 fontBold text-[#101828] font-dm-sans">Personal Details</h1>
+
+            <!--this input is not required according to the figma update-->
+            <!-- <div class="form-group mb-4">
+              <label for="">Select your category*</label>
+              <select class="form-select genInv selCateg" required name="" id="category">
+                <option disabled selected>Select--</option>
+                <option value="2">Individual</option>
+                <option value="1">Corporate</option>
+                <option value="3">State Agency</option>
+                <option value="4">Federal Agency</option>
+              </select>
+            </div> -->
+
             <div class="form-group mb-2">
-              <label for="">Select MDA *</label>
+              <label for="">MDA</label>
               <select onchange="updateSelectedOption1(this)" class="revHeadInputSel form-select mda" required name=""
                 id="mda">
-
               </select>
             </div>
 
@@ -106,15 +347,16 @@
 
               <div class="form-group w-8/12">
                 <label for="">What do you want to pay for?*</label>
-                <select onchange="updateSelectedOption()" class="revHeadInputSel h-[40px] form-select genInv revHeadsss" required
-                  name="" id="rev_heads">
+                <select onchange="updateSelectedOption()" class="revHeadInputSel h-[40px] form-select genInv revHeadsss"
+                  required name="" id="rev_heads">
 
                 </select>
               </div>
 
               <div class="form-group w-4/12">
                 <label for="">Amount to be paid*</label>
-                <input type="text" class="form-control genInv h-[40px] thePaymentInput amountTopay amountTopa" id="amountTopay">
+                <input type="text" class="form-control genInv h-[40px] thePaymentInput amountTopay amountTopa"
+                  id="amountTopay">
               </div>
 
             </div>
@@ -133,7 +375,7 @@
               <input type="text" class="form-control genInv" id="thedescripInput" required>
             </div>
 
-            <button class="button w-full" type="button" onclick="continuePage()">Continue</button>
+            <button class="button w-full" type="button" onclick="nextPrev(1)">Continue</button>
 
 
           </form>
@@ -141,90 +383,15 @@
         </div>
       </section>
 
+
+
+      <!--billing-->
       <section class="formTabs h-full">
+
         <div class="pt-10 md:px-10 px-4">
           <button class="flex items-center gap-2" onclick="nextPrev(-1)">
-            <iconify-icon icon="eva:arrow-back-outline"></iconify-icon>
-            <span>Go back</span>
-          </button>
-        </div>
-        <div class="flex justify-center items-center h-full -mt-10">
-
-          <form action="" class="md:w-[70%] secondForm">
-            <h1 class="fontBold text-2xl">Generate Invoice</h1>
-            <h1 class="mb-3 mt-3">Personal Details</h1>
-
-            <div class="flex items-center mb-4 gap-2" id="theName">
-              <div class="form-group w-full">
-                <label for="">First name *</label>
-                <input type="text" class="form-control payInputs" required data-name="first_name"
-                  placeholder="Enter your first name">
-              </div>
-
-              <div class="form-group w-full">
-                <label for="">Surname *</label>
-                <input type="text" class="form-control payInputs" required data-name="surname"
-                  placeholder="Enter your surname">
-              </div>
-            </div>
-
-            <div class="flex items-center mb-4 gap-2" id="theEmail">
-              <div class="form-group w-full">
-                <label for="">Email *</label>
-                <input type="text" class="form-control payInputs" required data-name="email"
-                  placeholder="Enter your Email Address">
-              </div>
-
-              <div class="form-group w-full">
-                <label for="">Phone number *</label>
-                <input type="number" class="form-control payInputs" minlength="11" maxlength="11" required
-                  data-name="phone" placeholder="Your 11-digits phone number">
-              </div>
-            </div>
-
-            <div class="flex items-center mb-4 gap-2">
-              <div class="form-group w-full" id="theTin">
-                <label for="">JTB TIN (Optional)</label>
-                <input type="text" class="form-control payInputs" id="tin" data-name="tin" placeholder="Enter your TIN">
-              </div>
-
-              <div class="form-group w-full">
-                <label for="">State*</label>
-                <select name="" id="selectState" class="form-select payInputs" data-name="state">
-                  <option value="Akwa Ibom">Akwa Ibom</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="flex items-center mb-4 gap-2">
-              <div class="form-group w-full">
-                <label for="">LGA*</label>
-                <select name="" id="selectLGA" class="form-select payInputs" required data-name="lga">
-                </select>
-              </div>
-
-              <div class="form-group w-full" id="theLga">
-                <label for="">Address*</label>
-                <input type="text" class="form-control payInputs" minlength="10" required data-name="address"
-                  placeholder=" Enter your address">
-              </div>
-            </div>
-
-
-
-
-            <button class="button w-full" type="button" onclick="goToPreviewPage()">Continue</button>
-          </form>
-
-        </div>
-      </section>
-
-      <section class="formTabs h-full">
-
-        <div class="md:pt-20 md:px-10 px-4">
-          <button class="flex items-center gap-2" onclick="nextPrev(-1)">
-            <iconify-icon icon="eva:arrow-back-outline"></iconify-icon>
-            <span>Go back</span>
+            <iconify-icon icon="eva:arrow-back-outline" class="text-[#101828]"></iconify-icon>
+            <span class="text-[#101828]">Go back</span>
           </button>
         </div>
 
@@ -232,72 +399,86 @@
           <form action="" class="md:w-[70%] secondForm">
             <!-- <h1 class="fontBold text-2xl">Generate Invoice</h1> -->
 
-            <h1 class="mb-3 mt-3">Billing Details</h1>
+            <!--text-[#101828] fontBold text-2xl pt-[196px] added-->
+            <h1 class="mb-3 mt-3 text-[#101828] fontBold text-2xl pt-[196px]">Billing Details</h1>
             <div class="shadow-md p-3 bg-[#E9ECEF]" id="bill">
               <div class="flex space-x-3">
                 <p></p>
                 <p></p>
               </div>
             </div>
-            <h1 class="mb-3 mt-3">User Details</h1>
-            <div class="flex items-center mb-4 gap-2" id="theName2">
-              <div class="form-group w-full">
-                <label for="">First name</label>
-                <input type="text" class="form-control payInputs2" readonly data-name="first_name">
-              </div>
+            <h1 class="mb-3 mt-3 text-[#101828] text-xl">User Details</h1>
 
-              <div class="form-group w-full">
-                <label for="">Surname</label>
-                <input type="text" class="form-control payInputs2" readonly data-name="surname">
+            <div class="form-group mb-4" id="section2">
+              <label for="dropdown2">Select your category*</label>
+              <select class="form-select genInv selCateg" required name="" id="dropdown2">
+                <!-- Options will be populated based on selection in Section 1 -->
+              </select>
+            </div>
+
+            <div class="form-group mb-3" id="sec2">
+              <label for="thedescripInput2">Enter Tin or Email*</label>
+              <input type="text" placeholder="estingtest@example.com" class="form-control genInv" id="thedescripInput2"
+                required>
+            </div>
+
+            <div class="flex items-center mb-4 gap-2" id="theName2">
+
+              <div class="form-group w-full"  id="addion2">
+                <label for="outputInputf">First name</label>
+                <input type="text" class="form-control payInputs2" readonly data-name="first_name" id="outputInputf">
               </div>
+              
+             
+
+              <div class="form-group w-full" id="addion3">
+                <label for="outputInputg">Surname</label>
+                <input type="text" class="form-control payInputs2" readonly data-name="surname" id="outputInputg">
+              </div>
+        
             </div>
 
             <div class="flex items-center mb-4 gap-2">
-              <div class="form-group w-full">
+              <!--this input is not required-->
+              <!-- <div class="form-group w-full">
                 <label for="">Email</label>
                 <input type="text" class="form-control payInputs2" readonly data-name="email">
+              </div> -->
+
+              <div class="form-group w-full" id="addion4">
+                <label for="outputInputp">Phone number *</label>
+                <input type="text" class="form-control payInputs2" readonly data-name="phone" id="outputInputp">
               </div>
 
-              <div class="form-group w-full">
-                <label for="">Phone number *</label>
-                <input type="text" class="form-control payInputs2" readonly data-name="phone">
+              <div class="form-group w-full" id="addion5">
+                <label for="outputInputs">State</label>
+                <input type="text" class="form-control payInputs2" readonly data-name="state" id="outputInputs">
               </div>
             </div>
 
-            <div class="flex items-center mb-4 gap-2">
+
+            <div class="flex items-center mb-4 gap-2" id="addion6">
               <div class="form-group w-full">
-                <label for="">JTB TIN (Optional)</label>
-                <input type="text" class="form-control payInputs2" readonly data-name="tin">
+                <label for="outputInputl">LGA</label>
+                <input type="text" class="form-control payInputs2" readonly data-name="lga" id="outputInputl">
+              </div>        
+
+              <div class="form-group w-full" id="addion7">
+                <label for="outputInputaa">Address</label>
+                <input type="text" class="form-control payInputs2" readonly data-name="address" id="outputInputaa">
               </div>
 
-              <div class="form-group w-full">
-                <label for="">State</label>
-                <input type="text" class="form-control payInputs2" readonly data-name="state">
-              </div>
-            </div>
-
-            <div class="flex items-center mb-4 gap-2">
-              <div class="form-group w-full">
-                <label for="">LGA</label>
-                <input type="text" class="form-control payInputs2" readonly data-name="lga">
-              </div>
-
-              <div class="form-group w-full">
-                <label for="">Address</label>
-                <input type="text" class="form-control payInputs2" readonly data-name="address">
-              </div>
             </div>
 
 
 
 
             <button class="button w-full" type="button" id="generating_inv"
-              onclick="generateInvoiceNon()">Continue</button>
+              onclick="nextPrev(1)">Continue</button>
             <div id="msg_box"></div>
           </form>
         </div>
       </section>
-
 
       <section class="formTabs pb-5">
         <div class="md:pt-10 pt-3 md:px-10 px-4">
@@ -315,11 +496,11 @@
 
 
         </div>
-
+         
         <div class="flex justify-center px-4">
           <div>
             <div class="mt-4">
-              <p class="text-xl">Note: You can make part payment by editing amount you are to pay</p>
+              <p class="text-xl text-[#101828]">Note: You can make part payment by editing amount you are to pay</p>
             </div>
             <div class="flex justify-between flex-wrap mt-4 gap-3">
               <div class="flex gap-3 items-center">
@@ -385,17 +566,17 @@
               <div class="flex gap-3 items-center">
                 <button class="outline-btn flex gap-3 items-center px-10" onclick="downloadInvoice('receiptCard')">
                   <iconify-icon icon="mdi:printer-outline" class="text-xl"></iconify-icon>
-                  <span>Download Receipt</span>
+                  <span class="text-[#101828]">Download Receipt</span>
                 </button>
 
                 <button class="outline-btn flex gap-3 items-center px-10" onclick="printInvoice('receiptCard')">
                   <iconify-icon icon="mdi:printer-outline" class="text-xl"></iconify-icon>
-                  <span>Print Receipt</span>
+                  <span class="text-[#101828]">Print Receipt</span>
                 </button>
               </div>
 
               <a href="index.html" class="button flex gap-3 items-center px-10">
-                <span>Return to home page</span>
+                <span class="text-[#101828]">Return to home page</span>
                 <iconify-icon icon="eva:arrow-forward-outline" class="text-xl"></iconify-icon>
               </a>
             </div>
@@ -425,41 +606,41 @@
     });
   </script>
 
-<script>
- 
- const amountInp = document.querySelector('.amountTopay');
- 
-amountInp.addEventListener('input', function(e) {
-  let inputVal = e.target.value;
+  <script>
 
-  // Immediately return if the first character is a dot to allow ".xx" inputs
-  if (inputVal === '.') {
-    return;
-  }
+    const amountInp = document.querySelector('.amountTopay');
 
-  // Normalize the input by removing commas and any non-numeric characters except for the decimal point
-  let normalizedInput = inputVal.replace(/,/g, '').replace(/[^0-9.]/g, '');
+    amountInp.addEventListener('input', function (e) {
+      let inputVal = e.target.value;
 
-  // Split the input into whole and decimal parts
-  let [whole, decimal] = normalizedInput.split('.');
+      // Immediately return if the first character is a dot to allow ".xx" inputs
+      if (inputVal === '.') {
+        return;
+      }
 
-  // Ensure the whole part is only numeric
-  whole = whole.replace(/\D/g, '');
+      // Normalize the input by removing commas and any non-numeric characters except for the decimal point
+      let normalizedInput = inputVal.replace(/,/g, '').replace(/[^0-9.]/g, '');
 
-  // If there's a decimal part, limit it to two digits
-  if (decimal) {
-    decimal = decimal.substring(0, 2); // Limit decimal part to two digits
-  }
+      // Split the input into whole and decimal parts
+      let [whole, decimal] = normalizedInput.split('.');
 
-  // Format the whole part with commas
-  let formattedWhole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      // Ensure the whole part is only numeric
+      whole = whole.replace(/\D/g, '');
 
-  // Reconstruct the formatted value
-  e.target.value = decimal !== undefined ? `${formattedWhole}.${decimal}` : formattedWhole;
-});
+      // If there's a decimal part, limit it to two digits
+      if (decimal) {
+        decimal = decimal.substring(0, 2); // Limit decimal part to two digits
+      }
+
+      // Format the whole part with commas
+      let formattedWhole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+      // Reconstruct the formatted value
+      e.target.value = decimal !== undefined ? `${formattedWhole}.${decimal}` : formattedWhole;
+    });
   </script>
-  
-  
+
+
   <script src="assets/js/nav.js?v=1.2"></script>
   <script src="assets/js/payment.js"></script>
   <script src="assets/js/tabHandler.js"></script>
